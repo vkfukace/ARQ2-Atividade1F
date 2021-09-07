@@ -7,9 +7,10 @@
 # RA: 115672
 
 # TODO:
-# deu bosta na emissao multipla
-# refazer os comentarios das funcoes toString
-# fazer TUDO
+# fazer exemplos
+# mudar as funcoes toString
+# ver como formatar boolean em uma fstring
+# refazer os comentarios - especialmente das funcoes toString
 # escrever arquivo
 
 import sys
@@ -42,27 +43,6 @@ class Instrucao:
             for operando in strAux:
                 operando = operando.strip()
                 self.operandos.append(operando)
-
-
-# class Pipeline:
-#     # Inicia o pipeline com todos os estados vazios
-#     def __init__(self) -> None:
-#         # Caso um estágio estiver sem instruções, será usado None
-#         self.estagios: List[str] = [
-#             'Emissao', 'Leitura', 'Execucao', 'Escrita']
-
-    #     self.instr: List[Union[Instrucao, None]]
-    #     self.instr = [None] * len(self.estagios)
-
-    # # Exibe na tela quais instruções se encontram em cada estágio do pipeline.
-    # # Quando um estágio estiver sem instruções, a saída apresenta '-'
-    # def toString(self):
-    #     print(f"\nPipeline =================================================")
-    #     for i in range(len(self.estagios)):
-    #         if type(self.instr[i]) is Instrucao:
-    #             print(f"{self.estagios[i]:>10}: {self.instr[i].string}")
-    #         else:
-    #             print(f"{self.estagios[i]:>10}: -")
 
 
 class Processador:
