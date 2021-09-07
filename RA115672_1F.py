@@ -26,7 +26,6 @@ class Instrucao:
         strAux = strInstrucao.partition(' ')
 
         self.uf: str = ''
-        self.latencia: int = 0
         self.string: str = strInstrucao
         self.opcode: str = strAux[0]
         self.operandos: List[str] = []
@@ -45,12 +44,12 @@ class Instrucao:
                 self.operandos.append(operando)
 
 
-class Pipeline:
-    # Inicia o pipeline com todos os estados vazios
-    def __init__(self) -> None:
-        # Caso um estágio estiver sem instruções, será usado None
-        self.estagios: List[str] = [
-            'Emissao', 'Leitura', 'Execucao', 'Escrita']
+# class Pipeline:
+#     # Inicia o pipeline com todos os estados vazios
+#     def __init__(self) -> None:
+#         # Caso um estágio estiver sem instruções, será usado None
+#         self.estagios: List[str] = [
+#             'Emissao', 'Leitura', 'Execucao', 'Escrita']
 
     #     self.instr: List[Union[Instrucao, None]]
     #     self.instr = [None] * len(self.estagios)
@@ -72,8 +71,8 @@ class Processador:
         self.numReg: int = 12
         self.reg: Dict[str, str] = {}
         for i in range(1, self.numReg + 1):
-            self.reg["r" + str(i)] = '0'
-        self.reg['rb'] = '0'
+            self.reg["r" + str(i)] = '-'
+        self.reg['rb'] = '-'
 
         # PC – Contador de programa;
         self.pc: int = 0
@@ -98,54 +97,98 @@ class Memoria:
             self.instrucoes.append(Instrucao(linha.rstrip()))
 
 
+class UnidadeFuncional:
+    def __init__(self, nome: str, listaOP: List[str], latencia: int) -> None:
+        self.nome: str = nome
+        self.busy: bool = False
+        self.op: str = ''
+        self.fi: str = ''
+        self.fj: str = ''
+        self.fk: str = ''
+        self.qj: str = ''
+        self.qk: str = ''
+        self.rj: bool = False
+        self.rk: bool = False
+        self.listaOP: List[str] = listaOP
+        self.latencia: int = latencia
+        self.latenciaAtual: int = latencia
+        self.instrucao: int = -1
+        self.estagioCompleto: int = -1
+
+    # Esvazia os campos de uma Unidade Funcional e os preenche com os valores padrão.
+    def reset(self) -> None:
+        self.busy: bool = False
+        self.op: str = ''
+        self.fi: str = ''
+        self.fj: str = ''
+        self.fk: str = ''
+        self.qj: str = ''
+        self.qk: str = ''
+        self.rj: bool = False
+        self.rk: bool = False
+        self.latenciaAtual: int = self.latencia
+        self.instrucao: int = -1
+        self.estagioCompleto: int = -1
+
+    # Retorna True se opcode está entre as operações que a UF executa
+    def operaInstrucao(self, opcode: str) -> bool:
+        return opcode in self.listaOP
+
+    # Exibe na tela o estado da unidade funcional.
+    def toString(self) -> str:
+        string = f'{self.nome:7}|{self.busy:5}|{self.op:5}|{self.fi:3}|{self.fj:3}|{self.fk:3}'
+        string = f'{string}|{self.qj:7}|{self.qk:7}|{self.rj:5}|{self.rk:5}'
+        print(string)
+
+
 class Scoreboard:
     # Inicia o scoreboard com todos os campos vazios.
     def __init__(self) -> None:
-        self.listaUF: List[str] = ['Integer',
-                                   'Mult1', 'Mult2', 'Add', "Divide"]
-        self.campos: List[str] = ['Busy', 'OP',
-                                  'Fi', 'Fj', 'Fk', 'Qj', 'Qk', 'Rj', 'Rk']
-        self.tabela: Dict[str, Dict[str, str]] = {}
-
-        for uf in self.listaUF:
-            self.tabela[uf] = {}
-            for campo in self.campos:
-                self.tabela[uf][campo] = ''
-            self.tabela[uf]['Busy'] = 'No'
-
-    # Esvazia os campos de uma Unidade Funcional e preenche o campo 'Busy' com 'No'.
-    # Assume que uf é uma Unidade Funcional válida.
-    def limpaUF(self, uf: str) -> None:
-        for campo in self.campos:
-            self.tabela[uf][campo] = ''
-        self.tabela[uf]['Busy'] = 'No'
+        self.listaUF: List[UnidadeFuncional] = []
+        self.listaUF.append(UnidadeFuncional('Integer', ['ld'], 1))
+        self.listaUF.append(UnidadeFuncional('Mult1', ['muld'], 10))
+        self.listaUF.append(UnidadeFuncional('Mult2', ['muld'], 10))
+        self.listaUF.append(UnidadeFuncional('Add', ['addd', 'subd'], 2))
+        self.listaUF.append(UnidadeFuncional('Divide', ['divd'], 40))
 
     # Retorna True se existe alguma instrução no Scoreboard, False caso contrário.
     def temInstrucao(self) -> bool:
         for uf in self.listaUF:
-            if self.tabela[uf]['Busy'] == 'Yes':
+            if uf.busy == True:
                 return True
         return False
+
+    # Retorna a posição da UF na lista baseado na UF
+    def indiceUF(self, uf: UnidadeFuncional) -> int:
+        return self.listaUF.index(uf)
+
+    # Retorna a posição da UF na lista baseado no nome
+    # Retorna -1 caso não seja encontrada
+    def indiceNome(self, nomeUF: str) -> int:
+        for i in range(len(self.listaUF)):
+            if self.listaUF[i].nome == nomeUF:
+                return i
+        return -1
 
     # Exibe na tela o estado das unidades funcionais.
     def toString(self):
         txt: str = f''
         print(f"\nScoreboard ===============================================")
         for uf in self.listaUF:
-            txt = f'{uf:7} | {self.tabela[uf]}'
-            print(txt)
+            uf.toString()
 
 
 class TabelaInstrucoes:
     # Inicia a tabela que contém todas as instruções e o ciclo em que
     # cada estágio do pipeline foi completo
-    def __init__(self, memoria: Memoria, pipeline: Pipeline) -> None:
-        self.ciclos: Dict[str, Dict[str, Union[int, str]]] = {}
+    def __init__(self, memoria: Memoria, estagiosPipeline: List[str]) -> None:
+        self.ciclos: Dict[int, Dict[str, Union[int, str]]] = {}
 
-        for instrucao in memoria.instrucoes:
-            self.ciclos[instrucao.string] = {}
-            for estagio in pipeline.estagios:
-                self.ciclos[instrucao.string][estagio] = '-'
+        for i in range(len(memoria.instrucoes)):
+            self.ciclos[i] = {}
+            self.ciclos[i]['instrucao'] = memoria.instrucoes[i].string
+            for estagio in estagiosPipeline:
+                self.ciclos[i][estagio] = '-'
 
     def toString(self) -> None:
         txt: str = f''
@@ -159,21 +202,14 @@ class Simulador:
     # Inicia o simulador usando o arquivo que contém o conjunto de instruções e
     # o arquivo de saída
     def __init__(self, arqEntrada: TextIO, arqSaida: TextIO) -> None:
+        self.ciclo: int = 0
+        self.estagiosPipeline: List[str] = [
+            'Emissao', 'Leitura', 'Execucao', 'Escrita']
         self.proc = Processador()
-        self.pipeline = Pipeline()
         self.memoria = Memoria(arqEntrada)
         self.scoreboard = Scoreboard()
-        self.tabelaInstr = TabelaInstrucoes(self.memoria, self.pipeline)
-        self.ciclo: int = 0
-
-        self.listaInstrucoes: List[str] = [
-            'ld', 'addd', 'subd', 'muld', 'divd']
-        self.listaLatencias: Dict[str, int] = {}
-        self.listaLatencias['ld'] = 1
-        self.listaLatencias['addd'] = 2
-        self.listaLatencias['subd'] = 2
-        self.listaLatencias['muld'] = 10
-        self.listaLatencias['divd'] = 40
+        self.tabelaInstr = TabelaInstrucoes(
+            self.memoria, self.estagiosPipeline)
 
     #####################
     # Estágios do pipeline
@@ -181,18 +217,18 @@ class Simulador:
     # Retorna True se é possível realizar a escrita, False caso contrário.
     # Assume que há uma instrução no estágio de escrita
 
-    def __verificaEscrita(self, imgScoreboard: Scoreboard) -> None:
-        uf: str = self.pipeline.instr[2].uf
+    def __podeEscrita(self, imgScoreboard: Scoreboard, uf: UnidadeFuncional) -> None:
+        iUF: int = self.scoreboard.indiceUF(uf)
         flag1: bool = True
         flag2: bool = True
         flag3: bool = True
 
-        for f in imgScoreboard.listaUF:
-            flag1 = imgScoreboard.tabela[f]['Fj'] != imgScoreboard.tabela[uf]['Fi']
-            flag2 = imgScoreboard.tabela[f]['Rj'] == 'No'
+        for f in range(len(imgScoreboard.listaUF)):
+            flag1 = imgScoreboard.listaUF[f].fj != imgScoreboard.listaUF[iUF].fi
+            flag2 = imgScoreboard.listaUF[f].rj == False
             flag3 = flag1 or flag2
-            flag1 = imgScoreboard.tabela[f]['Fk'] != imgScoreboard.tabela[uf]['Fi']
-            flag2 = imgScoreboard.tabela[f]['Rk'] == 'No'
+            flag1 = imgScoreboard.listaUF[f].fk != imgScoreboard.listaUF[iUF].fi
+            flag2 = imgScoreboard.listaUF[f].rk == False
             flag3 = flag3 and (flag1 or flag2)
             if not flag3:
                 return False
@@ -200,117 +236,93 @@ class Simulador:
         return True
 
     # Faz a escrita do resultados.
-    def __escrita(self, imgScoreboard: Scoreboard) -> None:
-        # TODO: esse primeiro if sai pra isso:
-        # for uf in self.scoreboard.listaUF:
-        #     if self.scoreboard.tabela[uf]['Busy'] == 'Yes':
-        #         pass
-        if type(self.pipeline.instr[3]) is Instrucao:
-            self.pipeline.instr[3] = None
-        if type(self.pipeline.instr[2]) is Instrucao:
-            if self.__verificaEscrita(imgScoreboard):
-                # Atribuir a outras variáveis para diminuir o tamanho da linha
-                instrucao = self.pipeline.instr[2]
-                uf: str = instrucao.uf
+    def __escrita(self, imgScoreboard: Scoreboard, uf: UnidadeFuncional) -> None:
+        iUF: int = self.scoreboard.indiceUF(uf)
+        if self.__podeEscrita(imgScoreboard, uf):
+            # Atribuir a outras variáveis para diminuir o tamanho da linha
+            nomeUF = self.scoreboard.listaUF[iUF].nome
 
-                for f in imgScoreboard.listaUF:
-                    if imgScoreboard.tabela[f]['Qj'] == uf:
-                        self.scoreboard.tabela[f]['Rj'] = 'Yes'
-                    if imgScoreboard.tabela[f]['Qk'] == uf:
-                        self.scoreboard.tabela[f]['Rk'] = 'Yes'
+            for f in range(len(imgScoreboard.listaUF)):
+                if imgScoreboard.listaUF[f].qj == nomeUF:
+                    self.scoreboard.listaUF[f].rj = True
+                if imgScoreboard.listaUF[f].qk == nomeUF:
+                    self.scoreboard.listaUF[f].rk = True
 
-                self.proc.reg[self.scoreboard.tabela[uf]['Fi']] = '0'
-                self.scoreboard.limpaUF(uf)
-                self.tabelaInstr.ciclos[instrucao.string]['Escrita'] = self.ciclo
-                self.pipeline.instr[3] = self.pipeline.instr[2]
-                self.pipeline.instr[2] = None
+            self.proc.reg[self.scoreboard.listaUF[iUF].fi] = '-'
+            self.tabelaInstr.ciclos[uf.instrucao]['Escrita'] = self.ciclo
+            self.scoreboard.listaUF[iUF].reset()
 
     # Faz a execução da instrução.
-    def __execucao(self, imgScoreboard: Scoreboard) -> None:
-        if type(self.pipeline.instr[1]) is Instrucao:
-            instrucao = self.pipeline.instr[1]
-            if self.pipeline.instr[1].latencia > 1:
-                self.pipeline.instr[1].latencia -= 1
-            else:
-                self.tabelaInstr.ciclos[instrucao.string]['Execucao'] = self.ciclo
-                self.pipeline.instr[2] = self.pipeline.instr[1]
-                self.pipeline.instr[1] = None
+
+    def __execucao(self, imgScoreboard: Scoreboard, uf: UnidadeFuncional) -> None:
+        iUF: int = self.scoreboard.indiceUF(uf)
+        if self.scoreboard.listaUF[iUF].latenciaAtual > 1:
+            self.scoreboard.listaUF[iUF].latenciaAtual -= 1
+        else:
+            self.tabelaInstr.ciclos[uf.instrucao]['Execucao'] = self.ciclo
+            self.scoreboard.listaUF[iUF].estagioCompleto = 2
 
     # Faz a leitura dos operandos
-    def __leitura(self, imgScoreboard: Scoreboard) -> None:
-        if type(self.pipeline.instr[0]) is Instrucao:
-            instrucao = self.pipeline.instr[0]
-            uf: str = instrucao.uf
+    def __leitura(self, imgScoreboard: Scoreboard, uf: UnidadeFuncional) -> None:
+        iUF: int = self.scoreboard.indiceUF(uf)
+        if imgScoreboard.listaUF[iUF].rj == True and imgScoreboard.listaUF[iUF].rk == True:
+            self.scoreboard.listaUF[iUF].rj = False
+            self.scoreboard.listaUF[iUF].rk = False
+            self.scoreboard.listaUF[iUF].qj = '-'
+            self.scoreboard.listaUF[iUF].qk = '-'
 
-            if imgScoreboard.tabela[uf]['Rj'] == 'Yes' and imgScoreboard.tabela[uf]['Rk'] == 'Yes':
-                self.scoreboard.tabela[uf]['Rj'] = 'No'
-                self.scoreboard.tabela[uf]['Rk'] = 'No'
-                self.scoreboard.tabela[uf]['Qj'] = '0'
-                self.scoreboard.tabela[uf]['Qk'] = '0'
-                self.tabelaInstr.ciclos[instrucao.string]['Leitura'] = self.ciclo
-                self.pipeline.instr[1] = self.pipeline.instr[0]
-                self.pipeline.instr[0] = None
+            self.tabelaInstr.ciclos[uf.instrucao]['Leitura'] = self.ciclo
+            self.scoreboard.listaUF[iUF].estagioCompleto = 1
 
     # Se for possível realizar a emissão, retorna a UF onde a instrução vai,
     # retorna '' caso contrário.
     def __ufEmissao(self, instrucao: Instrucao, imgScoreboard: Scoreboard) -> str:
-        if self.proc.reg[instrucao.operandos[0]] == '0':
-            if instrucao.opcode == 'ld':
-                if imgScoreboard.tabela['Integer']['Busy'] == 'No':
-                    return 'Integer'
-            elif instrucao.opcode == 'addd' or instrucao.opcode == 'subd':
-                if imgScoreboard.tabela['Add']['Busy'] == 'No':
-                    return 'Add'
-            elif instrucao.opcode == 'divd':
-                if imgScoreboard.tabela['Divide']['Busy'] == 'No':
-                    return 'Divide'
-            elif instrucao.opcode == 'muld':
-                if imgScoreboard.tabela['Mult1']['Busy'] == 'No':
-                    return 'Mult1'
-                elif imgScoreboard.tabela['Mult2']['Busy'] == 'No':
-                    return 'Mult2'
+        if self.proc.reg[instrucao.operandos[0]] == '-':
+            for uf in imgScoreboard.listaUF:
+                if uf.busy == False and uf.operaInstrucao(instrucao.opcode):
+                    return uf.nome
         return ''
 
     # Faz a emissão da instrução.
     # A busca está inclusa no estágio de emissão
-    # Assume a instrução está no formato correto
     def __emissao(self, imgScoreboard: Scoreboard) -> None:
         if self.proc.pc < len(self.memoria.instrucoes):
             instrucao = self.memoria.instrucoes[self.proc.pc]
-            uf = self.__ufEmissao(instrucao, imgScoreboard)
-            if uf != '':
-                self.scoreboard.tabela[uf]['Busy'] = 'Yes'
-                self.scoreboard.tabela[uf]['OP'] = instrucao.opcode
-                self.scoreboard.tabela[uf]['Fi'] = instrucao.operandos[0]
-                self.scoreboard.tabela[uf]['Fj'] = instrucao.operandos[1]
-                self.scoreboard.tabela[uf]['Fk'] = instrucao.operandos[2]
+            nomeUF = self.__ufEmissao(instrucao, imgScoreboard)
+            if nomeUF != '':
+                uf: int = imgScoreboard.indiceNome(nomeUF)
+                self.scoreboard.listaUF[uf].busy = True
+                self.scoreboard.listaUF[uf].op = instrucao.opcode
+                self.scoreboard.listaUF[uf].fi = instrucao.operandos[0]
+                self.scoreboard.listaUF[uf].fj = instrucao.operandos[1]
+                self.scoreboard.listaUF[uf].fk = instrucao.operandos[2]
+
                 if instrucao.opcode == 'ld':
-                    self.scoreboard.tabela[uf]['Qj'] = '0'
+                    self.scoreboard.listaUF[uf].qj = '-'
+                    self.scoreboard.listaUF[uf].qk = '-'
                 else:
-                    self.scoreboard.tabela[uf]['Qj'] = self.proc.reg[instrucao.operandos[1]]
-                self.scoreboard.tabela[uf]['Qk'] = self.proc.reg[instrucao.operandos[2]]
+                    self.scoreboard.listaUF[uf].qj = self.proc.reg[instrucao.operandos[1]]
+                    self.scoreboard.listaUF[uf].qk = self.proc.reg[instrucao.operandos[2]]
 
-                if self.scoreboard.tabela[uf]['Qk'] == '0':
-                    self.scoreboard.tabela[uf]['Rk'] = 'Yes'
+                if self.scoreboard.listaUF[uf].qk == '-':
+                    self.scoreboard.listaUF[uf].rk = True
                 else:
-                    self.scoreboard.tabela[uf]['Rk'] = 'No'
+                    self.scoreboard.listaUF[uf].rk = False
 
-                if self.scoreboard.tabela[uf]['Qj'] == '0':
-                    self.scoreboard.tabela[uf]['Rj'] = 'Yes'
+                if self.scoreboard.listaUF[uf].qj == '-':
+                    self.scoreboard.listaUF[uf].rj = True
                 else:
-                    self.scoreboard.tabela[uf]['Rj'] = 'No'
+                    self.scoreboard.listaUF[uf].rj = False
 
-                self.pipeline.instr[0] = instrucao
-                self.pipeline.instr[0].uf = uf
-                opcode = self.pipeline.instr[0].opcode
-                self.pipeline.instr[0].latencia = self.listaLatencias[opcode]
-                self.proc.reg[instrucao.operandos[0]] = uf
-                self.tabelaInstr.ciclos[instrucao.string]['Emissao'] = self.ciclo
+                self.scoreboard.listaUF[uf].instrucao = self.proc.pc
+                self.scoreboard.listaUF[uf].estagioCompleto = 0
+                self.proc.reg[instrucao.operandos[0]] = nomeUF
+                self.tabelaInstr.ciclos[self.proc.pc]['Emissao'] = self.ciclo
                 self.proc.pc += 1
 
     # Retorna True caso haja instruções na memória que não terminaram a execução,
     # retorna False caso contrário.
-    def status(self) -> bool:
+    def podeContinuarExecucao(self) -> bool:
         if self.proc.pc < len(self.memoria.instrucoes) or self.scoreboard.temInstrucao():
             return True
         else:
@@ -318,14 +330,19 @@ class Simulador:
 
     # Avança o estado da simulação da execução.
     def avanca(self) -> None:
-        if self.status():
+        if self.podeContinuarExecucao():
             self.ciclo += 1
             # imagemScoreboard é utilizada para simular a execução simultânea
             # As operações irão ler imagemScoreboard e operar no verdadeiro scoreboard
             imagemScoreboard: Scoreboard = copy.deepcopy(self.scoreboard)
-            self.__escrita(imagemScoreboard)
-            self.__execucao(imagemScoreboard)
-            self.__leitura(imagemScoreboard)
+            for uf in self.scoreboard.listaUF:
+                if uf.busy:
+                    if uf.estagioCompleto == 2:
+                        self.__escrita(imagemScoreboard, uf)
+                    elif uf.estagioCompleto == 1:
+                        self.__execucao(imagemScoreboard, uf)
+                    elif uf.estagioCompleto == 0:
+                        self.__leitura(imagemScoreboard, uf)
             self.__emissao(imagemScoreboard)
             pass
 
@@ -369,7 +386,7 @@ def main():
                 print(
                     f'\nInsira \'x\' para sair, qualquer outra letra para avancar: ', end='')
                 opcao = input()
-                while opcao != 'x' and sim.status() == True:
+                while opcao != 'x' and sim.podeContinuarExecucao() == True:
                     sim.avanca()
                     sim.toString()
                     print(
