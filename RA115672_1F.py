@@ -8,7 +8,6 @@
 
 # TODO:
 # fazer exemplos
-# mudar a funcao toString do simulador -> adicionar o log como parametro
 # escrever arquivo
 
 import sys
@@ -63,7 +62,7 @@ class Processador:
         string: str = f"\nRegistradores ============================================\n"
         for i in range(1, self.__numReg + 1):
             chave: str = f'r{i}'
-            string = string + f'{chave:>3}: {self.reg[chave]:7}|'
+            string = string + f'{chave:}: {self.reg[chave]:3}|'
         string = string + f'\npc:{self.pc}'
         return string
 
@@ -338,15 +337,26 @@ class Simulador:
             self.__emissao(imagemScoreboard)
             pass
 
-    # TODO: mudar
-    def toString(self) -> None:
-        txt: str = (
-            f'\n==========================================================\n')
-        txt = f'{txt}Ciclo: {self.ciclo}'
-        print(txt)
+    # Escreve o estado atual do simulador na tela.
+    def printEstado(self) -> None:
+        string: str = (
+            f'\n################################################################\n')
+        string = string+f'Ciclo: {self.ciclo}'
+        print(string)
         print(self.tabelaInstr.toString())
         print(self.scoreboard.toString())
         print(self.proc.toString())
+
+    # Escreve o estado atual do simulador em arq.
+    def escreveEmArquivo(self, arq: TextIO) -> None:
+        string: str = (
+            f'################################################################\n')
+        string = string+f'Ciclo: {self.ciclo}\n'
+        arq.write(string)
+        arq.write(self.tabelaInstr.toString())
+        arq.write(self.scoreboard.toString())
+        arq.write(self.proc.toString())
+        arq.write('\n\n')
 
 
 # Verifica os parâmetros de execução
@@ -368,24 +378,15 @@ def main():
         with open(sys.argv[1], mode='rt', encoding='utf-8') as arqEntrada:
             nomeArqSaida: str = sys.argv[1].strip(".asm")
             nomeArqSaida = nomeArqSaida + ".out"
+            sim: Simulador = Simulador(arqEntrada)
+            print("Inicialização do simulador completa.")
 
             print(f'Gerando arquivo de log {nomeArqSaida}')
             with open(nomeArqSaida, mode='wt', encoding='utf-8') as log:
-                sim: Simulador = Simulador(arqEntrada)
-                print("Inicialização do simulador completa.")
-
-                sim.toString()
-
-                opcao: str
-                print(
-                    f'\nInsira \'x\' para sair, qualquer outra letra para avancar: ', end='')
-                opcao = input()
-                while opcao != 'x' and sim.podeContinuar() == True:
+                sim.escreveEmArquivo(log)
+                while sim.podeContinuar():
                     sim.avanca()
-                    sim.toString()
-                    print(
-                        f'\nInsira \'x\' para sair, qualquer outra letra para avancar: ', end='')
-                    opcao = input()
+                    sim.escreveEmArquivo(log)
 
             print("Execucao Finalizada.")
 

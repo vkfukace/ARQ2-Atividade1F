@@ -1,0 +1,1512 @@
+################################################################
+Ciclo: 0
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |-       |-       |-       |-       
+ld r2, (45)rb       |-       |-       |-       |-       
+muld r1, r2, r4     |-       |-       |-       |-       
+subd r8, r6, r2     |-       |-       |-       |-       
+divd r11, r1, r6    |-       |-       |-       |-       
+addd r6, r8, r2     |-       |-       |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |False|    |   |   |   |       |       |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: -  |r12: -  |
+pc:0
+
+################################################################
+Ciclo: 1
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |-       |-       |-       
+ld r2, (45)rb       |-       |-       |-       |-       
+muld r1, r2, r4     |-       |-       |-       |-       
+subd r8, r6, r2     |-       |-       |-       |-       
+divd r11, r1, r6    |-       |-       |-       |-       
+addd r6, r8, r2     |-       |-       |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|True |ld  |r6 |34 |rb |-      |-      |True |True 
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |False|    |   |   |   |       |       |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: Integer|r7: -  |r8: -  |r9: -  |r10: -  |r11: -  |r12: -  |
+pc:1
+
+################################################################
+Ciclo: 2
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |-       |-       
+ld r2, (45)rb       |-       |-       |-       |-       
+muld r1, r2, r4     |-       |-       |-       |-       
+subd r8, r6, r2     |-       |-       |-       |-       
+divd r11, r1, r6    |-       |-       |-       |-       
+addd r6, r8, r2     |-       |-       |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|True |ld  |r6 |34 |rb |-      |-      |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |False|    |   |   |   |       |       |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: Integer|r7: -  |r8: -  |r9: -  |r10: -  |r11: -  |r12: -  |
+pc:1
+
+################################################################
+Ciclo: 3
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |-       
+ld r2, (45)rb       |-       |-       |-       |-       
+muld r1, r2, r4     |-       |-       |-       |-       
+subd r8, r6, r2     |-       |-       |-       |-       
+divd r11, r1, r6    |-       |-       |-       |-       
+addd r6, r8, r2     |-       |-       |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|True |ld  |r6 |34 |rb |-      |-      |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |False|    |   |   |   |       |       |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: Integer|r7: -  |r8: -  |r9: -  |r10: -  |r11: -  |r12: -  |
+pc:1
+
+################################################################
+Ciclo: 4
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |-       |-       |-       |-       
+muld r1, r2, r4     |-       |-       |-       |-       
+subd r8, r6, r2     |-       |-       |-       |-       
+divd r11, r1, r6    |-       |-       |-       |-       
+addd r6, r8, r2     |-       |-       |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |False|    |   |   |   |       |       |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: -  |r12: -  |
+pc:1
+
+################################################################
+Ciclo: 5
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |-       |-       |-       
+muld r1, r2, r4     |-       |-       |-       |-       
+subd r8, r6, r2     |-       |-       |-       |-       
+divd r11, r1, r6    |-       |-       |-       |-       
+addd r6, r8, r2     |-       |-       |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|True |ld  |r2 |45 |rb |-      |-      |True |True 
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |False|    |   |   |   |       |       |False|False
+
+Registradores ============================================
+r1: -  |r2: Integer|r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: -  |r12: -  |
+pc:2
+
+################################################################
+Ciclo: 6
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |-       |-       
+muld r1, r2, r4     |6       |-       |-       |-       
+subd r8, r6, r2     |-       |-       |-       |-       
+divd r11, r1, r6    |-       |-       |-       |-       
+addd r6, r8, r2     |-       |-       |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|True |ld  |r2 |45 |rb |-      |-      |False|False
+Mult1  |True |muld|r1 |r2 |r4 |Integer|-      |False|True 
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |False|    |   |   |   |       |       |False|False
+
+Registradores ============================================
+r1: Mult1|r2: Integer|r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: -  |r12: -  |
+pc:3
+
+################################################################
+Ciclo: 7
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |-       
+muld r1, r2, r4     |6       |-       |-       |-       
+subd r8, r6, r2     |7       |-       |-       |-       
+divd r11, r1, r6    |-       |-       |-       |-       
+addd r6, r8, r2     |-       |-       |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|True |ld  |r2 |45 |rb |-      |-      |False|False
+Mult1  |True |muld|r1 |r2 |r4 |Integer|-      |False|True 
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |subd|r8 |r6 |r2 |-      |Integer|True |False
+Divide |False|    |   |   |   |       |       |False|False
+
+Registradores ============================================
+r1: Mult1|r2: Integer|r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: Add|r9: -  |r10: -  |r11: -  |r12: -  |
+pc:4
+
+################################################################
+Ciclo: 8
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |-       |-       |-       
+subd r8, r6, r2     |7       |-       |-       |-       
+divd r11, r1, r6    |8       |-       |-       |-       
+addd r6, r8, r2     |-       |-       |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |True |muld|r1 |r2 |r4 |Integer|-      |True |True 
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |subd|r8 |r6 |r2 |-      |Integer|True |True 
+Divide |True |divd|r11|r1 |r6 |Mult1  |-      |False|True 
+
+Registradores ============================================
+r1: Mult1|r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: Add|r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:5
+
+################################################################
+Ciclo: 9
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |-       |-       
+subd r8, r6, r2     |7       |9       |-       |-       
+divd r11, r1, r6    |8       |-       |-       |-       
+addd r6, r8, r2     |-       |-       |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |True |muld|r1 |r2 |r4 |-      |-      |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |subd|r8 |r6 |r2 |-      |-      |False|False
+Divide |True |divd|r11|r1 |r6 |Mult1  |-      |False|True 
+
+Registradores ============================================
+r1: Mult1|r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: Add|r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:5
+
+################################################################
+Ciclo: 10
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |-       |-       
+subd r8, r6, r2     |7       |9       |-       |-       
+divd r11, r1, r6    |8       |-       |-       |-       
+addd r6, r8, r2     |-       |-       |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |True |muld|r1 |r2 |r4 |-      |-      |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |subd|r8 |r6 |r2 |-      |-      |False|False
+Divide |True |divd|r11|r1 |r6 |Mult1  |-      |False|True 
+
+Registradores ============================================
+r1: Mult1|r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: Add|r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:5
+
+################################################################
+Ciclo: 11
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |-       |-       
+subd r8, r6, r2     |7       |9       |11      |-       
+divd r11, r1, r6    |8       |-       |-       |-       
+addd r6, r8, r2     |-       |-       |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |True |muld|r1 |r2 |r4 |-      |-      |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |subd|r8 |r6 |r2 |-      |-      |False|False
+Divide |True |divd|r11|r1 |r6 |Mult1  |-      |False|True 
+
+Registradores ============================================
+r1: Mult1|r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: Add|r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:5
+
+################################################################
+Ciclo: 12
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |-       |-       
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |-       |-       |-       
+addd r6, r8, r2     |-       |-       |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |True |muld|r1 |r2 |r4 |-      |-      |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |Mult1  |-      |False|True 
+
+Registradores ============================================
+r1: Mult1|r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:5
+
+################################################################
+Ciclo: 13
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |-       |-       
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |-       |-       |-       
+addd r6, r8, r2     |13      |-       |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |True |muld|r1 |r2 |r4 |-      |-      |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |addd|r6 |r8 |r2 |-      |-      |True |True 
+Divide |True |divd|r11|r1 |r6 |Mult1  |-      |False|True 
+
+Registradores ============================================
+r1: Mult1|r2: -  |r3: -  |r4: -  |r5: -  |r6: Add|r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 14
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |-       |-       
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |-       |-       |-       
+addd r6, r8, r2     |13      |14      |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |True |muld|r1 |r2 |r4 |-      |-      |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |addd|r6 |r8 |r2 |-      |-      |False|False
+Divide |True |divd|r11|r1 |r6 |Mult1  |-      |False|True 
+
+Registradores ============================================
+r1: Mult1|r2: -  |r3: -  |r4: -  |r5: -  |r6: Add|r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 15
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |-       |-       
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |-       |-       |-       
+addd r6, r8, r2     |13      |14      |-       |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |True |muld|r1 |r2 |r4 |-      |-      |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |addd|r6 |r8 |r2 |-      |-      |False|False
+Divide |True |divd|r11|r1 |r6 |Mult1  |-      |False|True 
+
+Registradores ============================================
+r1: Mult1|r2: -  |r3: -  |r4: -  |r5: -  |r6: Add|r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 16
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |-       |-       
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |-       |-       |-       
+addd r6, r8, r2     |13      |14      |16      |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |True |muld|r1 |r2 |r4 |-      |-      |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |addd|r6 |r8 |r2 |-      |-      |False|False
+Divide |True |divd|r11|r1 |r6 |Mult1  |-      |False|True 
+
+Registradores ============================================
+r1: Mult1|r2: -  |r3: -  |r4: -  |r5: -  |r6: Add|r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 17
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |-       |-       
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |-       |-       |-       
+addd r6, r8, r2     |13      |14      |16      |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |True |muld|r1 |r2 |r4 |-      |-      |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |addd|r6 |r8 |r2 |-      |-      |False|False
+Divide |True |divd|r11|r1 |r6 |Mult1  |-      |False|True 
+
+Registradores ============================================
+r1: Mult1|r2: -  |r3: -  |r4: -  |r5: -  |r6: Add|r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 18
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |-       |-       
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |-       |-       |-       
+addd r6, r8, r2     |13      |14      |16      |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |True |muld|r1 |r2 |r4 |-      |-      |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |addd|r6 |r8 |r2 |-      |-      |False|False
+Divide |True |divd|r11|r1 |r6 |Mult1  |-      |False|True 
+
+Registradores ============================================
+r1: Mult1|r2: -  |r3: -  |r4: -  |r5: -  |r6: Add|r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 19
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |-       
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |-       |-       |-       
+addd r6, r8, r2     |13      |14      |16      |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |True |muld|r1 |r2 |r4 |-      |-      |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |addd|r6 |r8 |r2 |-      |-      |False|False
+Divide |True |divd|r11|r1 |r6 |Mult1  |-      |False|True 
+
+Registradores ============================================
+r1: Mult1|r2: -  |r3: -  |r4: -  |r5: -  |r6: Add|r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 20
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |-       |-       |-       
+addd r6, r8, r2     |13      |14      |16      |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |addd|r6 |r8 |r2 |-      |-      |False|False
+Divide |True |divd|r11|r1 |r6 |Mult1  |-      |True |True 
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: Add|r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 21
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |addd|r6 |r8 |r2 |-      |-      |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: Add|r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 22
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 23
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 24
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 25
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 26
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 27
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 28
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 29
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 30
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 31
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 32
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 33
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 34
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 35
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 36
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 37
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 38
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 39
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 40
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 41
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 42
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 43
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 44
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 45
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 46
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 47
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 48
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 49
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 50
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 51
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 52
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 53
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 54
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 55
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 56
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 57
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 58
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 59
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 60
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |-       |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 61
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |61      |-       
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |True |divd|r11|r1 |r6 |-      |-      |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: Divide|r12: -  |
+pc:6
+
+################################################################
+Ciclo: 62
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r6, (34)rb       |1       |2       |3       |4       
+ld r2, (45)rb       |5       |6       |7       |8       
+muld r1, r2, r4     |6       |9       |19      |20      
+subd r8, r6, r2     |7       |9       |11      |12      
+divd r11, r1, r6    |8       |21      |61      |62      
+addd r6, r8, r2     |13      |14      |16      |22      
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |False|    |   |   |   |       |       |False|False
+Divide |False|    |   |   |   |       |       |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: -  |r12: -  |
+pc:6
+
