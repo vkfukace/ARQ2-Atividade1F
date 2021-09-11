@@ -1,24 +1,22 @@
 # Arquitetura e Organização de Computadores II
 # Atividade 1F
 # Implementação de simulador de scoreboarding
-# Python 3.8.5 64-bit
+# Python 3.9.2 64-bit
 #
 # Aluno: Vinícius Kenzo Fukace
 # RA: 115672
 
-# TODO:
-# fazer exemplos
-# escrever arquivo
-
 import sys
 import copy
-from typing import List, TextIO, Union, Dict
+from typing import List, TextIO, Dict
 
 
 # Definição de Dados
 
 class Instrucao:
     # Separa a string da instrução em seus componentes.
+    # Assume que o opcode e os operandos estão de acordo com
+    # a especificação da atividade.
     def __init__(self, strInstrucao: str) -> None:
         # Separa o opcode do resto
         strAux = strInstrucao.partition(' ')
@@ -62,7 +60,7 @@ class Processador:
         string: str = f"\nRegistradores ============================================\n"
         for i in range(1, self.__numReg + 1):
             chave: str = f'r{i}'
-            string = string + f'{chave:}: {self.reg[chave]:3}|'
+            string = string + f'{chave}: {self.reg[chave]:3}|'
         string = string + f'\npc:{self.pc}'
         return string
 
@@ -174,6 +172,7 @@ class TabelaInstrucoes:
 
     # Retorna uma string com as informações da instrução de posição i na tabela
     def __instrucaoToString(self, i: int) -> str:
+        # tinha que atribuir a uma str separada antes, senão não funcionava.
         strInstrucao: str = self.ciclos[i]['instrucao']
         string = f'{strInstrucao:20}'
         for estagio in self.__estagiosPipeline:
@@ -230,8 +229,8 @@ class Simulador:
 
     # Realiza a etapa de escrita dos resultados em uf.
     def __escrita(self, imgScoreboard: Scoreboard, uf: UnidadeFuncional) -> None:
-        iUF: int = self.scoreboard.indiceUF(uf)
         if self.__podeEscrita(imgScoreboard, uf):
+            iUF: int = self.scoreboard.indiceUF(uf)
             nomeUF = self.scoreboard.listaUF[iUF].nome
 
             for f in range(len(imgScoreboard.listaUF)):
@@ -392,7 +391,33 @@ def main():
 
     else:
         print("Execução Invalida!")
-        print("Exemplo de entrada: python3 RA115672_1F.py <nome do arquivo>.asm")
+        print("Exemplo de entrada: .\RA115672_1F.py <nome do arquivo>.asm")
+
+# def main():
+#     if verificaParametros(sys.argv) == True:
+#         # Automaticamente fecha o arquivo caso haja erros
+#         with open(sys.argv[1], mode='rt', encoding='utf-8') as arqEntrada:
+#             nomeArqSaida: str = sys.argv[1].strip(".asm")
+#             nomeArqSaida = nomeArqSaida + ".out"
+#             sim: Simulador = Simulador(arqEntrada)
+#             print("Inicialização do simulador completa.")
+
+#             print(f'Gerando arquivo de log {nomeArqSaida}')
+#             with open(nomeArqSaida, mode='wt', encoding='utf-8') as log:
+#                 sim.printEstado()
+#                 print('Continuar:')
+#                 opcao = input()
+#                 while opcao != 'x' and sim.podeContinuar():
+#                     sim.avanca()
+#                     sim.printEstado()
+#                     print('Continuar:')
+#                     opcao = input()
+
+#             print("Execucao Finalizada.")
+
+#     else:
+#         print("Execução Invalida!")
+#         print("Exemplo de entrada: python3 RA115672_1F.py <nome do arquivo>.asm")
 
 
 if __name__ == '__main__':
