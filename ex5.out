@@ -1463,19 +1463,19 @@ addd r9, r11, r12   |15      |17      |19      |20
 subd r8, r11, r12   |21      |22      |24      |25      
 muld r7, r8, r9     |22      |26      |36      |37      
 addd r6, r7, r10    |26      |38      |40      |41      
-subd r3, r3, r6     |50      |-       |-       |-       
+subd r3, r3, r6     |-       |-       |-       |-       
 
 Scoreboard ===============================================
 UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
 Integer|False|    |   |   |   |       |       |False|False
 Mult1  |False|    |   |   |   |       |       |False|False
 Mult2  |False|    |   |   |   |       |       |False|False
-Add    |True |subd|r3 |r3 |r6 |-      |-      |True |True 
+Add    |False|    |   |   |   |       |       |False|False
 Divide |False|    |   |   |   |       |       |False|False
 
 Registradores ============================================
-r1: -  |r2: -  |r3: Add|r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: -  |r12: -  |
-pc:11
+r1: -  |r2: -  |r3: -  |r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: -  |r12: -  |
+pc:10
 
 ################################################################
 Ciclo: 51
@@ -1492,14 +1492,14 @@ addd r9, r11, r12   |15      |17      |19      |20
 subd r8, r11, r12   |21      |22      |24      |25      
 muld r7, r8, r9     |22      |26      |36      |37      
 addd r6, r7, r10    |26      |38      |40      |41      
-subd r3, r3, r6     |50      |51      |-       |-       
+subd r3, r3, r6     |51      |-       |-       |-       
 
 Scoreboard ===============================================
 UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
 Integer|False|    |   |   |   |       |       |False|False
 Mult1  |False|    |   |   |   |       |       |False|False
 Mult2  |False|    |   |   |   |       |       |False|False
-Add    |True |subd|r3 |r3 |r6 |-      |-      |False|False
+Add    |True |subd|r3 |r3 |r6 |-      |-      |True |True 
 Divide |False|    |   |   |   |       |       |False|False
 
 Registradores ============================================
@@ -1521,7 +1521,7 @@ addd r9, r11, r12   |15      |17      |19      |20
 subd r8, r11, r12   |21      |22      |24      |25      
 muld r7, r8, r9     |22      |26      |36      |37      
 addd r6, r7, r10    |26      |38      |40      |41      
-subd r3, r3, r6     |50      |51      |-       |-       
+subd r3, r3, r6     |51      |52      |-       |-       
 
 Scoreboard ===============================================
 UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
@@ -1550,7 +1550,7 @@ addd r9, r11, r12   |15      |17      |19      |20
 subd r8, r11, r12   |21      |22      |24      |25      
 muld r7, r8, r9     |22      |26      |36      |37      
 addd r6, r7, r10    |26      |38      |40      |41      
-subd r3, r3, r6     |50      |51      |53      |-       
+subd r3, r3, r6     |51      |52      |-       |-       
 
 Scoreboard ===============================================
 UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
@@ -1579,7 +1579,36 @@ addd r9, r11, r12   |15      |17      |19      |20
 subd r8, r11, r12   |21      |22      |24      |25      
 muld r7, r8, r9     |22      |26      |36      |37      
 addd r6, r7, r10    |26      |38      |40      |41      
-subd r3, r3, r6     |50      |51      |53      |54      
+subd r3, r3, r6     |51      |52      |54      |-       
+
+Scoreboard ===============================================
+UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk
+Integer|False|    |   |   |   |       |       |False|False
+Mult1  |False|    |   |   |   |       |       |False|False
+Mult2  |False|    |   |   |   |       |       |False|False
+Add    |True |subd|r3 |r3 |r6 |-      |-      |False|False
+Divide |False|    |   |   |   |       |       |False|False
+
+Registradores ============================================
+r1: -  |r2: -  |r3: Add|r4: -  |r5: -  |r6: -  |r7: -  |r8: -  |r9: -  |r10: -  |r11: -  |r12: -  |
+pc:11
+
+################################################################
+Ciclo: 55
+
+Tabela de Instrucoes =====================================
+Instrucao           |Emissao |Leitura |Execucao|Escrita 
+ld r1, (100)rb      |1       |2       |3       |4       
+ld r2, (120)rb      |5       |6       |7       |8       
+divd r3, r1, r2     |6       |9       |49      |50      
+ld r12, (10)rb      |9       |10      |11      |12      
+ld r11, (20)rb      |13      |14      |15      |16      
+muld r10, r11, r12  |14      |17      |27      |28      
+addd r9, r11, r12   |15      |17      |19      |20      
+subd r8, r11, r12   |21      |22      |24      |25      
+muld r7, r8, r9     |22      |26      |36      |37      
+addd r6, r7, r10    |26      |38      |40      |41      
+subd r3, r3, r6     |51      |52      |54      |55      
 
 Scoreboard ===============================================
 UF     |Busy |OP  |Fi |Fj |Fk |Qj     |Qk     |Rj   |Rk

@@ -325,15 +325,15 @@ class Simulador:
             # imagemScoreboard é utilizada para simular a execução simultânea
             # As operações irão ler imagemScoreboard e operar no verdadeiro scoreboard
             imagemScoreboard: Scoreboard = copy.deepcopy(self.scoreboard)
+            self.__emissao(imagemScoreboard)
             for uf in self.scoreboard.listaUF:
                 if uf.busy:
-                    if uf.estagioCompleto == 2:
-                        self.__escrita(imagemScoreboard, uf)
+                    if uf.estagioCompleto == 0:
+                        self.__leitura(imagemScoreboard, uf)
                     elif uf.estagioCompleto == 1:
                         self.__execucao(uf)
-                    elif uf.estagioCompleto == 0:
-                        self.__leitura(imagemScoreboard, uf)
-            self.__emissao(imagemScoreboard)
+                    elif uf.estagioCompleto == 2:
+                        self.__escrita(imagemScoreboard, uf)
             pass
 
     # Escreve o estado atual do simulador na tela.
@@ -392,32 +392,6 @@ def main():
     else:
         print("Execução Invalida!")
         print("Exemplo de entrada: .\RA115672_1F.py <nome do arquivo>.asm")
-
-# def main():
-#     if verificaParametros(sys.argv) == True:
-#         # Automaticamente fecha o arquivo caso haja erros
-#         with open(sys.argv[1], mode='rt', encoding='utf-8') as arqEntrada:
-#             nomeArqSaida: str = sys.argv[1].strip(".asm")
-#             nomeArqSaida = nomeArqSaida + ".out"
-#             sim: Simulador = Simulador(arqEntrada)
-#             print("Inicialização do simulador completa.")
-
-#             print(f'Gerando arquivo de log {nomeArqSaida}')
-#             with open(nomeArqSaida, mode='wt', encoding='utf-8') as log:
-#                 sim.printEstado()
-#                 print('Continuar:')
-#                 opcao = input()
-#                 while opcao != 'x' and sim.podeContinuar():
-#                     sim.avanca()
-#                     sim.printEstado()
-#                     print('Continuar:')
-#                     opcao = input()
-
-#             print("Execucao Finalizada.")
-
-#     else:
-#         print("Execução Invalida!")
-#         print("Exemplo de entrada: python3 RA115672_1F.py <nome do arquivo>.asm")
 
 
 if __name__ == '__main__':
