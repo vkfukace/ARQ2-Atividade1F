@@ -1,6 +1,13 @@
-ld r6, (34)rb
-ld r2, (45)rb
-muld r1, r2, r4
-subd r8, r6, r2
-divd r11, r1, r6
-addd r6, r8, r2
+ld r1, (0)rb
+ld r2, (4)rb
+divd r3, r2, r1
+ld r4, (12)rb
+ld r5, (16)rb
+muld r6, r5, r4
+ld r7, (20)rb
+ld r8, (24)rb
+muld r9, r8, r7
+ld r10, (20)rb
+ld r11, (24)rb
+subd r12, r11, r10
+addd r12, r12, r12

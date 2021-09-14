@@ -6,6 +6,9 @@
 # Aluno: Vinícius Kenzo Fukace
 # RA: 115672
 
+# TODO: separar o bookkeeping
+# descrever os exemplos
+
 import sys
 import copy
 from typing import List, TextIO, Dict
@@ -40,9 +43,8 @@ class Instrucao:
                 self.operandos.append(operando)
 
 
-class Processador:
-    # Inicializa o processador com registradores nomeados r1 até r12, rb
-    # e o contador de programa (pc).
+class ListaRegistradores:
+    # Inicializa os registradores r1 até r12, rb e o contador de programa (pc).
     def __init__(self) -> None:
         self.__numReg: int = 12
         self.regVazio: str = '-'
@@ -199,7 +201,7 @@ class Simulador:
         self.ciclo: int = 0
         self.estagiosPipeline: List[str] = [
             'Emissao', 'Leitura', 'Execucao', 'Escrita']
-        self.proc = Processador()
+        self.listaReg = ListaRegistradores()
         self.memoria = Memoria(arqEntrada)
         self.scoreboard = Scoreboard()
         self.tabelaInstr = TabelaInstrucoes(
@@ -239,7 +241,7 @@ class Simulador:
                 if imgScoreboard.listaUF[f].qk == nomeUF:
                     self.scoreboard.listaUF[f].rk = True
 
-            self.proc.reg[self.scoreboard.listaUF[iUF].fi] = self.proc.regVazio
+            self.listaReg.reg[self.scoreboard.listaUF[iUF].fi] = self.listaReg.regVazio
             self.tabelaInstr.ciclos[uf.instrucao]['Escrita'] = self.ciclo
             self.scoreboard.listaUF[iUF].reset()
 
@@ -258,8 +260,8 @@ class Simulador:
         if imgScoreboard.listaUF[iUF].rj == True and imgScoreboard.listaUF[iUF].rk == True:
             self.scoreboard.listaUF[iUF].rj = False
             self.scoreboard.listaUF[iUF].rk = False
-            self.scoreboard.listaUF[iUF].qj = self.proc.regVazio
-            self.scoreboard.listaUF[iUF].qk = self.proc.regVazio
+            self.scoreboard.listaUF[iUF].qj = self.listaReg.regVazio
+            self.scoreboard.listaUF[iUF].qk = self.listaReg.regVazio
 
             self.tabelaInstr.ciclos[uf.instrucao]['Leitura'] = self.ciclo
             self.scoreboard.listaUF[iUF].estagioCompleto = 1
@@ -267,7 +269,7 @@ class Simulador:
     # Se for possível realizar a emissão, retorna o nome da UF onde a instrução vai,
     # retorna '' caso contrário.
     def __ufEmissao(self, instrucao: Instrucao, imgScoreboard: Scoreboard) -> str:
-        if self.proc.reg[instrucao.operandos[0]] == self.proc.regVazio:
+        if self.listaReg.reg[instrucao.operandos[0]] == self.listaReg.regVazio:
             for uf in imgScoreboard.listaUF:
                 if uf.busy == False and uf.operaInstrucao(instrucao.opcode):
                     return uf.nome
@@ -276,8 +278,8 @@ class Simulador:
     # Realiza a etapa de emissão da instrução.
     # A busca está inclusa no estágio de emissão
     def __emissao(self, imgScoreboard: Scoreboard) -> None:
-        if self.proc.pc < len(self.memoria.instrucoes):
-            instrucao = self.memoria.instrucoes[self.proc.pc]
+        if self.listaReg.pc < len(self.memoria.instrucoes):
+            instrucao = self.memoria.instrucoes[self.listaReg.pc]
             nomeUF = self.__ufEmissao(instrucao, imgScoreboard)
             if nomeUF != '':
                 uf: int = imgScoreboard.indiceNome(nomeUF)
@@ -288,32 +290,32 @@ class Simulador:
                 self.scoreboard.listaUF[uf].fk = instrucao.operandos[2]
 
                 if instrucao.opcode == 'ld':
-                    self.scoreboard.listaUF[uf].qj = self.proc.regVazio
-                    self.scoreboard.listaUF[uf].qk = self.proc.regVazio
+                    self.scoreboard.listaUF[uf].qj = self.listaReg.regVazio
+                    self.scoreboard.listaUF[uf].qk = self.listaReg.regVazio
                 else:
-                    self.scoreboard.listaUF[uf].qj = self.proc.reg[instrucao.operandos[1]]
-                    self.scoreboard.listaUF[uf].qk = self.proc.reg[instrucao.operandos[2]]
+                    self.scoreboard.listaUF[uf].qj = self.listaReg.reg[instrucao.operandos[1]]
+                    self.scoreboard.listaUF[uf].qk = self.listaReg.reg[instrucao.operandos[2]]
 
-                if self.scoreboard.listaUF[uf].qk == self.proc.regVazio:
+                if self.scoreboard.listaUF[uf].qk == self.listaReg.regVazio:
                     self.scoreboard.listaUF[uf].rk = True
                 else:
                     self.scoreboard.listaUF[uf].rk = False
 
-                if self.scoreboard.listaUF[uf].qj == self.proc.regVazio:
+                if self.scoreboard.listaUF[uf].qj == self.listaReg.regVazio:
                     self.scoreboard.listaUF[uf].rj = True
                 else:
                     self.scoreboard.listaUF[uf].rj = False
 
-                self.scoreboard.listaUF[uf].instrucao = self.proc.pc
+                self.scoreboard.listaUF[uf].instrucao = self.listaReg.pc
                 self.scoreboard.listaUF[uf].estagioCompleto = 0
-                self.proc.reg[instrucao.operandos[0]] = nomeUF
-                self.tabelaInstr.ciclos[self.proc.pc]['Emissao'] = self.ciclo
-                self.proc.pc += 1
+                self.listaReg.reg[instrucao.operandos[0]] = nomeUF
+                self.tabelaInstr.ciclos[self.listaReg.pc]['Emissao'] = self.ciclo
+                self.listaReg.pc += 1
 
     # Retorna True caso haja instruções na memória que não terminaram a execução,
     # retorna False caso contrário.
     def podeContinuar(self) -> bool:
-        if self.proc.pc < len(self.memoria.instrucoes) or self.scoreboard.temInstrucao():
+        if self.listaReg.pc < len(self.memoria.instrucoes) or self.scoreboard.temInstrucao():
             return True
         else:
             return False
@@ -344,7 +346,7 @@ class Simulador:
         print(string)
         print(self.tabelaInstr.toString())
         print(self.scoreboard.toString())
-        print(self.proc.toString())
+        print(self.listaReg.toString())
 
     # Escreve o estado atual do simulador em arq.
     def escreveEmArquivo(self, arq: TextIO) -> None:
@@ -354,7 +356,7 @@ class Simulador:
         arq.write(string)
         arq.write(self.tabelaInstr.toString())
         arq.write(self.scoreboard.toString())
-        arq.write(self.proc.toString())
+        arq.write(self.listaReg.toString())
         arq.write('\n\n')
 
 
@@ -383,7 +385,9 @@ def main():
             print(f'Gerando arquivo de log {nomeArqSaida}')
             with open(nomeArqSaida, mode='wt', encoding='utf-8') as log:
                 sim.escreveEmArquivo(log)
-                while sim.podeContinuar():
+                while sim.podeContinuar() and sim.ciclo < 1000:
+                    # O limite de 1000 ciclos é arbitrário para evitar execução infinita em testes
+                    # em que as instruções não estão escritas corretamente.
                     sim.avanca()
                     sim.escreveEmArquivo(log)
 
