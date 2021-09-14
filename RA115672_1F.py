@@ -5,9 +5,13 @@
 #
 # Aluno: Vinícius Kenzo Fukace
 # RA: 115672
+#
+# Descrição dos Exemplos
+# ex1 e ex2 - Conjuntos de instruções iguais ordenadas de forma diferente.
+# ex3 - Instruções usando somente uma unidade funcional.
+# ex4 - Exemplo com múltiplas dependências RAW.
+# ex5 - Exemplo com dependências RAW, WAR e WAW.
 
-# TODO: separar o bookkeeping
-# descrever os exemplos
 
 import sys
 import copy
@@ -387,7 +391,7 @@ def main():
                 sim.escreveEmArquivo(log)
                 while sim.podeContinuar() and sim.ciclo < 1000:
                     # O limite de 1000 ciclos é arbitrário para evitar execução infinita em testes
-                    # em que as instruções não estão escritas corretamente.
+                    # onde as instruções não estão escritas corretamente.
                     sim.avanca()
                     sim.escreveEmArquivo(log)
 
